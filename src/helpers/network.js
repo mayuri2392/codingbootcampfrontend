@@ -2,7 +2,7 @@ import { getToken } from "./authentication";
 
 function loginRequest({email, password}){
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:5000/users/login", {
+    fetch("https://codingbootcampbackend.herokuapp.com/users/login", {
       method: "post",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -25,7 +25,7 @@ function loginRequest({email, password}){
 
 function registerRequest({name, email, password}){
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:5000/users/register", {
+    fetch("https://codingbootcampbackend.herokuapp.com/users/register", {
       method: "post",
       headers: {
         "Content-Type": "application/json; charset=utf-8"
@@ -49,13 +49,13 @@ function registerRequest({name, email, password}){
 
 function getDashboard(){
   return new Promise((resolve, reject) => {
-    fetch("http://localhost:5000/dashboard", {
+    fetch("https://codingbootcampbackend.herokuapp.com/dashboard", {
       headers: {
        'Authorization': getToken() 
       }
     }).then(response => {
       if (!response.ok){
-        reject(new Error("Unathorized"));
+        reject(new Error("Unauthorized"));
         return;
       }
       response.json().then(json => {
